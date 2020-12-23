@@ -17,6 +17,7 @@
 }
 main{
     width: 30%;
+    background-color: white;
     margin: auto auto;
     display: flex;
     flex-direction: column;
