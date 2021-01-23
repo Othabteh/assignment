@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Nav, Button } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
 import Signin from '../regestration/login';
 import Signup from '../regestration/signup';
 import { If, Else, Then } from 'react-if';
@@ -19,24 +20,20 @@ function Header() {
   }
 
   return (
-    <Navbar className='nav' variant='dark'>
-      <Nav className='mr-auto'>
-        <Nav.Link href='' style={{ color: '#eeeeee' }}>
-          Home
-        </Nav.Link>
-      </Nav>
+    <Navbar className='nav' style={{ backgroundColor: 'gray' }}>
+      <Nav className='mr-auto'></Nav>
       <If condition={contextType.loggedIn}>
         <Then>
-          <Button variant='outline-info' onClick={contextType.logout}>
+          <Button style={{ margin: '20px', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '20px', fontWeight: 'bold' }} variant='outline-info' onClick={contextType.logout}>
             Logout
           </Button>
         </Then>
         <Else>
-          <Button style={{ marginRight: '10px' }} variant='outline-info' onClick={() => setSigninShow(true)}>
+          <Button style={{ margin: '20px', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '20px', fontWeight: 'bold' }} variant='outline-info' onClick={() => setSigninShow(true)}>
             Signin
           </Button>
 
-          <Button className={'.text-danger'} variant='outline-danger' onClick={() => setSignupShow(true)}>
+          <Button style={{ margin: '20px', padding: '10px', backgroundColor: 'blue', color: 'white', fontSize: '20px', fontWeight: 'bold' }} variant='outline-danger' onClick={() => setSignupShow(true)}>
             Signup
           </Button>
         </Else>

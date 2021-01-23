@@ -22,28 +22,32 @@ function Signup(props) {
   };
 
   return (
-    <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
+    <Modal style={{ textAlign: 'center' }} {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
       <Modal.Header closeButton>
-        <Modal.Title id='contained-modal-title-vcenter'>Signup</Modal.Title>
+        <Modal.Title style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', marginBottom: '20px' }} id='contained-modal-title-vcenter'>
+          Signup
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+        <Form style={{ marginTop: '20px' }}>
           <Form.Group controlId='formBasicUsername'>
-            <Form.Label>Username</Form.Label>
-            <Form.Control onChange={handleChange} name='username' required type='text' placeholder='Enter username' />
+            <Form.Label style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', textAlign: 'center', marginRight: '50px' }}>Username</Form.Label>
+            <Form.Control style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', textAlign: 'center' }} onChange={handleChange} name='username' required type='text' placeholder='Enter username' />
           </Form.Group>
 
           <Form.Group controlId='formBasicPassword'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control onChange={handleChange} name='password' required type='password' placeholder='Password' />
+            <Form.Label style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', textAlign: 'center', marginRight: '50px' }}>Password</Form.Label>
+            <Form.Control style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', textAlign: 'center' }} onChange={handleChange} name='password' required type='password' placeholder='Password' />
           </Form.Group>
         </Form>
       </Modal.Body>
       <If condition={context.error}>
-        <Alert variant='danger'>User already registered</Alert>
+        <Alert style={{ color: 'red', fontSize: '20px' }} variant='danger'>
+          User already registered
+        </Alert>
       </If>
       <Modal.Footer>
-        <Button variant='info' className='btnAdd' onClick={handleSubmit}>
+        <Button style={{ backgroundColor: 'blue', color: 'white', fontSize: '20px', padding: '10px', marginTop: '20px' }} variant='info' className='btnAdd' onClick={handleSubmit}>
           Signup
         </Button>
       </Modal.Footer>

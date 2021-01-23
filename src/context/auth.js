@@ -18,7 +18,6 @@ function AuthProvider(props) {
 
   useEffect(() => {
     const token = cookie.load('auth');
-
     validateToken(token);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -37,17 +36,14 @@ function AuthProvider(props) {
     setUser(user);
     setToken(token);
     setRole(user.role);
-
     setLoggedIn(loggedIn);
     setError(false);
   };
 
   const login = async (username, password) => {
-    console.log(username, password);
     try {
       const response = await superagent.post(`${API}/signin`).set('authorization', `Basic ${btoa(`${username}:${password}`)}`);
       validateToken(response.body.token);
-      console.log('here');
     } catch (e) {
       setError(true);
     }
@@ -56,9 +52,7 @@ function AuthProvider(props) {
   const signup = async (username, password) => {
     try {
       const response = await superagent.post(`${API}/signup`).send({ username, password });
-      console.log(response);
       validateToken(response.body.token);
-      console.log('here');
     } catch (e) {
       setError(true);
     }

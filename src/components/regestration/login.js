@@ -22,28 +22,32 @@ function Login(props) {
   };
 
   return (
-    <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
+    <Modal style={{ textAlign: 'center', margin: '50px' }} {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
       <Modal.Header closeButton>
-        <Modal.Title id='contained-modal-title-vcenter'>Signin</Modal.Title>
+        <Modal.Title style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold' }} id='contained-modal-title-vcenter'>
+          Signin
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group controlId='formBasicUsername'>
-            <Form.Label>Username</Form.Label>
-            <Form.Control onChange={handleChange} name='username' type='text' placeholder='Enter username' />
+            <Form.Label style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', textAlign: 'center', marginRight: '50px' }}>Username</Form.Label>
+            <Form.Control style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', textAlign: 'center' }} onChange={handleChange} name='username' type='text' placeholder='Enter username' />
           </Form.Group>
 
           <Form.Group controlId='formBasicPassword'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control onChange={handleChange} name='password' type='password' placeholder='Password' />
+            <Form.Label style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', textAlign: 'center', marginRight: '50px' }}>Password</Form.Label>
+            <Form.Control style={{ color: 'blue', fontSize: '25px', fontWeight: 'bold', textAlign: 'center' }} onChange={handleChange} name='password' type='password' placeholder='Password' />
           </Form.Group>
         </Form>
       </Modal.Body>
       <If condition={contextType.error}>
-        <Alert variant='danger'>Wrong username or password</Alert>
+        <Alert style={{ color: 'red', fontSize: '20px' }} variant='danger'>
+          Wrong username or password
+        </Alert>
       </If>
       <Modal.Footer>
-        <Button variant='info' className='btnAdd' onClick={handleSubmit}>
+        <Button style={{ backgroundColor: 'blue', color: 'white', fontSize: '20px', padding: '10px' }} variant='info' className='btnAdd' onClick={handleSubmit}>
           Signin
         </Button>
       </Modal.Footer>

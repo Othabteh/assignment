@@ -1,16 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import './styles.scss';
 import superagent from 'superagent';
-// import Form from 'react-bootstrap/Form';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Container, Row, Card } from 'react-bootstrap';
 import Comments from '../Comments/comment';
 import { Editor } from '@tinymce/tinymce-react';
-
-// import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
-// import Results from '../search/jobs/results';
-// import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../context/auth';
 import { If, Then, Else } from 'react-if';
 const blogsApi = 'https://osamapwc.herokuapp.com/post';
@@ -22,13 +15,11 @@ export default function HomePage() {
   const [edit, setEdit] = useState(false);
   const [body, setBody] = useState('');
   const [blogID, setBlogID] = useState('');
-  console.log(blog);
   const handleEditorChange = (content, editor) => {
     setBody(content);
   };
 
   const handleSubmit = () => {
-    console.log(context.token);
     const payload = {
       body,
     };
@@ -52,13 +43,9 @@ export default function HomePage() {
     setBlogID(blogID);
 
     async function getData() {
-      await superagent
-        .get(`${blogsApi}/${blogID}`)
-
-        .then((data) => {
-          console.log(data);
-          setBlog(data.body[0]);
-        });
+      await superagent.get(`${blogsApi}/${blogID}`).then((data) => {
+        setBlog(data.body[0]);
+      });
     }
 
     getData();
@@ -68,10 +55,8 @@ export default function HomePage() {
       <Container style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginTop: '100px' }}>
         <If condition={!edit}>
           <Then>
-            <Card.Body style={{ margin: '0 auto', width: '18rem', height: '150px', alignItems: 'center', paddingTop: '20px', backgroundColor: ' #eaecf1', border: '1px solid #e1e3e8 ', boxShadow: '0 0 7px #888888', borderRadius: '5px' }}>
-              <Card.Body>
-                <Card.Title style={{ color: 'black', fontWeight: 'bold', fontSize: '18px', textAlign: 'center', fontSize: '30px' }}>{blog.body}</Card.Title>
-              </Card.Body>
+            <Card.Body style={{ margin: '0 auto', width: '18rem', height: 'fit-content', alignItems: 'center', paddingTop: '20px', backgroundColor: ' #eaecf1', border: '1px solid #e1e3e8 ', boxShadow: '0 0 7px #888888', borderRadius: '5px', padding: '50px' }}>
+              <Card.Title style={{ color: 'black', fontWeight: 'bold', fontSize: '18px', textAlign: 'center', fontSize: '30px' }}>{blog.body}</Card.Title>
             </Card.Body>
           </Then>
           <Else>
@@ -92,7 +77,7 @@ export default function HomePage() {
                 onEditorChange={handleEditorChange}
               />
 
-              <Button onClick={() => handleSubmit()} variant='outline-dark' className='buttonTopic' size='lg' type='submit' style={{ marginTop: '20px', height: '40px', fontWeight: '500' }}>
+              <Button onClick={() => handleSubmit()} variant='outline-dark' className='buttonTopic' size='lg' type='submit' style={{ marginTop: '20px', height: '40px', fontWeight: '500', backgroundColor: 'blue', color: 'white', fontSize: '25px' }}>
                 Submit
               </Button>
             </Row>
@@ -100,9 +85,10 @@ export default function HomePage() {
         </If>
         <Row>
           <If condition={context.user.username && (context.user.username == blog.author || context.user.role == 'admin')}>
-            {console.log(context.user.username, blog.author, context.user.role)}
             <Then>
-              <Button onClick={() => handleEdit()}>Edit</Button>
+              <Button style={{ backgroundColor: 'blue', fontSize: '25px', color: 'white', padding: '15px', position: 'absolute', left: '1000px', bottom: '50%' }} onClick={() => handleEdit()}>
+                Edit
+              </Button>
             </Then>
           </If>
         </Row>
