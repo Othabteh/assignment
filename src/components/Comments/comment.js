@@ -13,7 +13,6 @@ export default function SubmitPost() {
   let url = window.location.href.split('/').pop();
   let blogID = url.split('&')[0];
   let authorID = url.split('&')[1].split('=').pop();
-
   const handleEditorChange = (content, editor) => {
     setBody(content);
   };
@@ -64,7 +63,6 @@ export default function SubmitPost() {
               }}
               onEditorChange={handleEditorChange}
             />
-
             <Button onClick={() => handleSubmit()} variant='outline-dark' className='buttonTopic' size='lg' type='submit' style={{ marginTop: '20px', height: '40px', fontWeight: 'bold', backgroundColor: 'blue', color: 'white', fontSize: '25px' }}>
               Submit
             </Button>
